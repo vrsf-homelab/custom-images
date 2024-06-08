@@ -1,9 +1,9 @@
-ARG AGENT_VERSION=bookworm-jdk17
+ARG JNLP_VERSION=3248.v65ecb_254c298-5
 ARG TERRAFORM_VERSION=1.8.5
 
 FROM hashicorp/terraform:${TERRAFORM_VERSION} AS terraform-builder
 
-FROM jenkins/agent:${AGENT_VERSION} AS jnlp
+FROM jenkins/inbound-agent:${JNLP_VERSION} AS jnlp
 
 USER root
 
