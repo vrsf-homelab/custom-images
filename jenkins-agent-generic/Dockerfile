@@ -13,7 +13,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-    wget jq yq nodejs \
+    wget jq yq nodejs make \
     && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=terraform-builder /bin/terraform /bin/

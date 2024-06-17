@@ -3,7 +3,7 @@ name: Build Jenkins Generic Agent
 on:
   push:
     paths:
-      - 'jenkins-agent-generic/Dockerfile'
+      - 'jenkins-agent-generic/VERSION'
 
 jobs:
   build:
@@ -22,13 +22,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Get the date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+    - name: Get the version
+      id: version
+      run: echo "::set-output name=version::$(cat jenkins-agent-generic/VERSION)"
 
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: jenkins-agent-generic
         push: true
-        tags: vertisan/jenkins-agent-generic:${{ steps.date.outputs.date }}
+        tags: vertisan/jenkins-agent-generic:${{ steps.version.outputs.version }}
