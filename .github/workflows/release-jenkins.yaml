@@ -3,7 +3,7 @@ name: Build Jenkins
 on:
   push:
     paths:
-      - 'jenkins/Dockerfile'
+      - 'jenkins/VERSION'
 
 jobs:
   build:
@@ -22,13 +22,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Get the date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+    - name: Get the version
+      id: version
+      run: echo "::set-output name=version::$(cat jenkins/VERSION)"
 
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: jenkins
         push: true
-        tags: vertisan/jenkins:${{ steps.date.outputs.date }}
+        tags: vertisan/jenkins:${{ steps.version.outputs.version }}

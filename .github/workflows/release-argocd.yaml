@@ -3,7 +3,7 @@ name: Build ArgoCD
 on:
   push:
     paths:
-      - 'argocd/Dockerfile'
+      - 'argocd/VERSION'
 
 jobs:
   build:
@@ -22,13 +22,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Get the date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+    - name: Get the version
+      id: version
+      run: echo "::set-output name=version::$(cat argocd/VERSION)"
 
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: argocd
         push: true
-        tags: vertisan/argocd:${{ steps.date.outputs.date }}
+        tags: vertisan/argocd:${{ steps.version.outputs.version }}
