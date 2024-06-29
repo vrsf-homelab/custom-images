@@ -30,6 +30,7 @@ pipeline-gcp:9.v9717887cc524
 pipeline-github-lib:61.v629f2cc41d83
 pipeline-graph-view:287.v3ef017b_780d5
 pipeline-utility-steps:2.16.2
+prometheus:773.v3b_62d8178eec
 ssh-slaves:2.968.v6f8823c91de4
 timestamper:1.27
 warnings-ng:11.3.0
