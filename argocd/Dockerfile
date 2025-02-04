@@ -1,4 +1,4 @@
-ARG ARGOCD_VERSION=v2.11.7
+ARG ARGOCD_VERSION=v2.14.1
 ARG KSOPS_VERSION=v4.3.1
 
 FROM quay.io/viaductoss/ksops:${KSOPS_VERSION} as ksops-builder
